@@ -1,0 +1,24 @@
+# Python virtual environment
+rsna/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data files (large)
+*.dcm
+*.npy
+*.h5
+
+# Model weights
+*.pt
+*.pth
+*.ckpt
+
+# OS
+.DS_Store
+Thumbs.db
