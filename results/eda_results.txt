@@ -1,0 +1,39 @@
+=== Starting EDA script. Saving plots to 'plots/' and text report to 'results/' ===
+
+Loaded train.csv: 4407 rows, 14 columns
+Loaded train_series.csv: 24371 rows, 5 columns
+
+--- Annotation Sparsity ---
+Labeled studies (Clinician Ground Truth): 58 (1.32%)
+Unlabeled studies (Radiology Report Only): 4349 (98.68%)
+
+--- Target Class Distribution in Labeled Subset ---
+  ACL                | Positive: 24 | Negative: 34
+  MCL                | Positive:  9 | Negative: 49
+  Medial Meniscus    | Positive: 26 | Negative: 32
+  Lateral Meniscus   | Positive: 23 | Negative: 35
+  Medial OA          | Positive: 15 | Negative: 43
+  Lateral OA         | Positive: 11 | Negative: 47
+  PF OA              | Positive: 21 | Negative: 37
+  Effusion           | Positive: 35 | Negative: 23
+  Synovitis          | Positive: 27 | Negative: 31
+  Baker's            | Positive: 12 | Negative: 46
+  Contusion          | Positive: 19 | Negative: 39
+  Fracture           | Positive: 18 | Negative: 40
+
+--- Report Statistics ---
+Average character length: 1097.9 (Median: 977.0)
+Average word count:      147.5 (Median: 129.0)
+
+--- Series Metadata ---
+Average series per study: 5.53 (Min: 3, Max: 14)
+Anatomical Planes frequency:
+  Sagittal  :  9864 sequences
+  Coronal   :  8609 sequences
+  Axial     :  5898 sequences
+
+Correlation between Fluid Sensitive and Fat Suppression:
+Fat_Suppression      0      1
+Fluid_Sensitive              
+0                10361      0
+1                    0  14010
