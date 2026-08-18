@@ -11,3 +11,6 @@ Ran the eda.py script to explore the data. It generates plots and saves them in 
 
 5. Created a generate_execution_plan.py file in the scratch folder to generate the execution plan.
 Used the generate_execution_plan.py script to generate the execution plan. The file is saved in the scratch folder.
+
+6. Created a pseudo_label_generator.py file in the scratch folder to generate pseudo-labels for the training data.
+Used the pseudo_label_generator.py script to generate pseudo-labels for the training data. The file is saved in the scratch folder.
