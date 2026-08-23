@@ -41,3 +41,32 @@ class SliceEncoder(nn.Module):
         return features
 
 
+class SequenceAggregator(nn.Module):
+    """Aggregates a sequence of slice features into a single study-level feature vector."""
+    def __init__(self, input_dim, hidden_dim=256, num_layers=1):
+        super(SequenceAggregator, self).__init__()
+        
+        # Bidirectional GRU to capture spatial relations between adjacent slices
+        self.gru = nn.GRU(
+            input_size=input_dim,
+            hidden_size=hidden_dim,
+            num_layers=num_layers,
+            batch_first=True,
+            bidirectional=True
+        )
+        
+        # The output feature dimension is doubled due to bidirectional accumulation (forward + backward)
+        self.output_dim = hidden_dim * 2
+
+    def forward(self, x):
+        # Input shape x: (Batch, SequenceLength, InputDim) -> e.g. (B, 32, 1280)
+        
+        # 1. Pass the sequence through the GRU
+        # gru_out shape: (Batch, SequenceLength, HiddenDim * 2)
+        gru_out, _ = self.gru(x)
+        
+        # 2. Pool the sequence features along the sequence/depth dimension (dim=1)
+        # Average pooling over the 32 slices
+        pooled_out = torch.mean(gru_out, dim=1)  # Shape: (Batch, HiddenDim * 2)
+        
+        return pooled_out

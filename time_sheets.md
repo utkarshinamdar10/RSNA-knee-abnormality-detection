@@ -28,3 +28,7 @@ Ran the dataset.py script to test the dataset.
 1. Created a src/model.py file to create a custom model for the RSNA knee abnormality detection task.
 Used the SliceEncoder class to create a custom model for the RSNA knee abnormality detection task.
 Ran the model.py script to test the model.
+
+2. Created a SequenceAggregator class to aggregate the sequence of slice features into a single study-level feature vector.
+Used the SequenceAggregator class to aggregate the sequence of slice features into a single study-level feature vector.
+Ran the model.py script to test the model.
