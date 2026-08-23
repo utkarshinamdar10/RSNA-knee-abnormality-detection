@@ -14,3 +14,13 @@ Used the generate_execution_plan.py script to generate the execution plan. The f
 
 6. Created a pseudo_label_generator.py file in the scratch folder to generate pseudo-labels for the training data.
 Used the pseudo_label_generator.py script to generate pseudo-labels for the training data. The file is saved in the scratch folder.
+
+## 19/06/2026
+1. Created a data_visualization.py file in the scratch folder to visualize the data.
+Used the data_visualization.py script to visualize the data. It generates plots and saves them in the plots folder.
+
+2. Created a src/dataset.py file to create a custom dataset for the RSNA knee abnormality detection task.
+Used the load_dicom_slice and load_and_resize_series functions to load and preprocess the DICOM slices and stack them into a 3D volume.
+Used the RSNAKneeDataset class to create a custom dataset for the RSNA knee abnormality detection task.
+Ran the dataset.py script to test the dataset.
+
