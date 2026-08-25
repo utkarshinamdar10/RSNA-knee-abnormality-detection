@@ -70,3 +70,33 @@ class SequenceAggregator(nn.Module):
         pooled_out = torch.mean(gru_out, dim=1)  # Shape: (Batch, HiddenDim * 2)
         
         return pooled_out
+
+
+class RSNAKneeModel(nn.Module):
+    """Unified single-view PyTorch model for RSNA Knee Abnormality Detection."""
+    def __init__(self, backbone_name='efficientnet_b0', pretrained=True, num_classes=12):
+        super(RSNAKneeModel, self).__init__()
+        
+        # 1. 2.5D Slice Encoder
+        self.encoder = SliceEncoder(backbone_name=backbone_name, pretrained=pretrained)
+        
+        # 2. Sequence Aggregator (takes features from CNN output dim)
+        self.aggregator = SequenceAggregator(input_dim=self.encoder.feature_dim)
+        
+        # 3. Final Multi-Label Classification Head
+        # Outputting logits directly (we will apply Sigmoid during loss calculation/inference)
+        self.classifier = nn.Linear(self.aggregator.output_dim, num_classes)
+
+    def forward(self, x):
+        # Input shape: (Batch, Channels, Depth, Height, Width) -> e.g. (B, 1, 32, 256, 256)
+        
+        # 1. Encode slices: (Batch, Depth, FeatureDim)
+        features = self.encoder(x)
+        
+        # 2. Aggregate sequence: (Batch, AggregatorOutputDim)
+        aggregated_features = self.aggregator(features)
+        
+        # 3. Classify: (Batch, 12)
+        logits = self.classifier(aggregated_features)
+        
+        return logits
