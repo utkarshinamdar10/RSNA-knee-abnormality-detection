@@ -144,6 +144,9 @@ rsna/Scripts/python -m kaggle kernels push -p .
 ```bash
 rsna/Scripts/python -m kaggle kernels status gauravhemantlokhande/rsna-knee-first-submission
 ```
+- `KernelWorkerStatus.RUNNING` → still training, wait more
+- `KernelWorkerStatus.COMPLETE` → done, download output and submit
+- `KernelWorkerStatus.ERROR` → something crashed, check the log
 
 **Download outputs (submission.csv + model checkpoint):**
 ```bash
