@@ -70,12 +70,11 @@ def load_and_resize_series(series_dir, target_slices=32, target_size=(256, 256))
         resized_slices.append(resized_slice)
     volume = np.stack(resized_slices, axis=0)
     
-    # 5. Resample slice count (depth) to exactly target_slices (32)
+    # 5. Resample slice count (depth) to exactly target_slices
     current_slices = volume.shape[0]
     if current_slices != target_slices:
-        indices = np.linspace(0, current_slices - 1, target_slices)
-        # 1D interpolation along the slice (depth) axis
-        volume = ndimage.map_coordinates(volume, [indices, None, None], order=1)
+        zoom_factor = target_slices / current_slices
+        volume = ndimage.zoom(volume, (zoom_factor, 1, 1), order=1)
         
     return volume
 
