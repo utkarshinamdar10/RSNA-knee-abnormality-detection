@@ -22,3 +22,7 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db
+
+# Kaggle output (generated files)
+kaggle_output/tmp/
+kaggle_output/*.csv
